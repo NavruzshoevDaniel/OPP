@@ -111,6 +111,19 @@ depend:
 .PHONY : depend
 
 #=============================================================================
+# Target rules for targets named Lab1.3_var_2
+
+# Build rule for target.
+Lab1.3_var_2: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 Lab1.3_var_2
+.PHONY : Lab1.3_var_2
+
+# fast build rule for target.
+Lab1.3_var_2/fast:
+	$(MAKE) -f CMakeFiles/Lab1.3_var_2.dir/build.make CMakeFiles/Lab1.3_var_2.dir/build
+.PHONY : Lab1.3_var_2/fast
+
+#=============================================================================
 # Target rules for targets named Lab1
 
 # Build rule for target.
@@ -122,6 +135,19 @@ Lab1: cmake_check_build_system
 Lab1/fast:
 	$(MAKE) -f CMakeFiles/Lab1.dir/build.make CMakeFiles/Lab1.dir/build
 .PHONY : Lab1/fast
+
+#=============================================================================
+# Target rules for targets named Lab1.3_var_1
+
+# Build rule for target.
+Lab1.3_var_1: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 Lab1.3_var_1
+.PHONY : Lab1.3_var_1
+
+# fast build rule for target.
+Lab1.3_var_1/fast:
+	$(MAKE) -f CMakeFiles/Lab1.3_var_1.dir/build.make CMakeFiles/Lab1.3_var_1.dir/build
+.PHONY : Lab1.3_var_1/fast
 
 main.o: main.cpp.o
 
@@ -150,6 +176,60 @@ main.cpp.s:
 	$(MAKE) -f CMakeFiles/Lab1.dir/build.make CMakeFiles/Lab1.dir/main.cpp.s
 .PHONY : main.cpp.s
 
+main_var1.o: main_var1.cpp.o
+
+.PHONY : main_var1.o
+
+# target to build an object file
+main_var1.cpp.o:
+	$(MAKE) -f CMakeFiles/Lab1.3_var_1.dir/build.make CMakeFiles/Lab1.3_var_1.dir/main_var1.cpp.o
+.PHONY : main_var1.cpp.o
+
+main_var1.i: main_var1.cpp.i
+
+.PHONY : main_var1.i
+
+# target to preprocess a source file
+main_var1.cpp.i:
+	$(MAKE) -f CMakeFiles/Lab1.3_var_1.dir/build.make CMakeFiles/Lab1.3_var_1.dir/main_var1.cpp.i
+.PHONY : main_var1.cpp.i
+
+main_var1.s: main_var1.cpp.s
+
+.PHONY : main_var1.s
+
+# target to generate assembly for a file
+main_var1.cpp.s:
+	$(MAKE) -f CMakeFiles/Lab1.3_var_1.dir/build.make CMakeFiles/Lab1.3_var_1.dir/main_var1.cpp.s
+.PHONY : main_var1.cpp.s
+
+main_var2.o: main_var2.cpp.o
+
+.PHONY : main_var2.o
+
+# target to build an object file
+main_var2.cpp.o:
+	$(MAKE) -f CMakeFiles/Lab1.3_var_2.dir/build.make CMakeFiles/Lab1.3_var_2.dir/main_var2.cpp.o
+.PHONY : main_var2.cpp.o
+
+main_var2.i: main_var2.cpp.i
+
+.PHONY : main_var2.i
+
+# target to preprocess a source file
+main_var2.cpp.i:
+	$(MAKE) -f CMakeFiles/Lab1.3_var_2.dir/build.make CMakeFiles/Lab1.3_var_2.dir/main_var2.cpp.i
+.PHONY : main_var2.cpp.i
+
+main_var2.s: main_var2.cpp.s
+
+.PHONY : main_var2.s
+
+# target to generate assembly for a file
+main_var2.cpp.s:
+	$(MAKE) -f CMakeFiles/Lab1.3_var_2.dir/build.make CMakeFiles/Lab1.3_var_2.dir/main_var2.cpp.s
+.PHONY : main_var2.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -158,10 +238,18 @@ help:
 	@echo "... depend"
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
+	@echo "... Lab1.3_var_2"
 	@echo "... Lab1"
+	@echo "... Lab1.3_var_1"
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"
+	@echo "... main_var1.o"
+	@echo "... main_var1.i"
+	@echo "... main_var1.s"
+	@echo "... main_var2.o"
+	@echo "... main_var2.i"
+	@echo "... main_var2.s"
 .PHONY : help
 
 

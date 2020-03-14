@@ -1,0 +1,1 @@
+/usr/local/bin/g++-9   -fopenmp -g -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk -Wl,-search_paths_first -Wl,-headerpad_max_install_names  CMakeFiles/Lab2_1.1.dir/mainOpenMP1.cpp.o  -o Lab2_1.1  -L/usr/local/opt/libomp/lib -Wl,-rpath,/usr/local/opt/libomp/lib -lomp 

@@ -1,3 +1,5 @@
 /Users/daniel/CLionProjects/OPP/Lab1/cmake-build-debug/CMakeFiles/rebuild_cache.dir
 /Users/daniel/CLionProjects/OPP/Lab1/cmake-build-debug/CMakeFiles/edit_cache.dir
+/Users/daniel/CLionProjects/OPP/Lab1/cmake-build-debug/CMakeFiles/Lab1.3_var_2.dir
 /Users/daniel/CLionProjects/OPP/Lab1/cmake-build-debug/CMakeFiles/Lab1.dir
+/Users/daniel/CLionProjects/OPP/Lab1/cmake-build-debug/CMakeFiles/Lab1.3_var_1.dir

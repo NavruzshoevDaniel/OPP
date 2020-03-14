@@ -1,0 +1,1 @@
+/usr//local/bin/mpicxx  -g -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk -Wl,-search_paths_first -Wl,-headerpad_max_install_names  CMakeFiles/Lab3NoParallel.dir/mainNoParallel.cpp.o  -o Lab3NoParallel  -L/usr/local/opt/mpich/lib 

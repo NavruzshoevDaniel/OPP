@@ -4,6 +4,7 @@
 #include <mpi.h>
 
 #define sizeMatrix 5
+
 #define epsilon 0.0000000000000000000000000000000001
 
 //перемножение матрицы на вектор
