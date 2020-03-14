@@ -142,6 +142,7 @@ void caluclate(double *a, double *b, double *c, int *dims, int rank, MPI_Comm co
 void createComms(MPI_Comm comm2D, MPI_Comm *columns, MPI_Comm *rows) {
   int remainsRow[2];
   int remainsColumns[2];
+
   remainsColumns[0]=1;
   remainsColumns[1]=0;
   remainsRow[0]=0;
