@@ -124,6 +124,19 @@ Lab3NoParallel/fast:
 .PHONY : Lab3NoParallel/fast
 
 #=============================================================================
+# Target rules for targets named NotMy
+
+# Build rule for target.
+NotMy: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 NotMy
+.PHONY : NotMy
+
+# fast build rule for target.
+NotMy/fast:
+	$(MAKE) -f CMakeFiles/NotMy.dir/build.make CMakeFiles/NotMy.dir/build
+.PHONY : NotMy/fast
+
+#=============================================================================
 # Target rules for targets named Lab3
 
 # Build rule for target.
@@ -190,6 +203,33 @@ mainNoParallel.cpp.s:
 	$(MAKE) -f CMakeFiles/Lab3NoParallel.dir/build.make CMakeFiles/Lab3NoParallel.dir/mainNoParallel.cpp.s
 .PHONY : mainNoParallel.cpp.s
 
+notMy.o: notMy.cpp.o
+
+.PHONY : notMy.o
+
+# target to build an object file
+notMy.cpp.o:
+	$(MAKE) -f CMakeFiles/NotMy.dir/build.make CMakeFiles/NotMy.dir/notMy.cpp.o
+.PHONY : notMy.cpp.o
+
+notMy.i: notMy.cpp.i
+
+.PHONY : notMy.i
+
+# target to preprocess a source file
+notMy.cpp.i:
+	$(MAKE) -f CMakeFiles/NotMy.dir/build.make CMakeFiles/NotMy.dir/notMy.cpp.i
+.PHONY : notMy.cpp.i
+
+notMy.s: notMy.cpp.s
+
+.PHONY : notMy.s
+
+# target to generate assembly for a file
+notMy.cpp.s:
+	$(MAKE) -f CMakeFiles/NotMy.dir/build.make CMakeFiles/NotMy.dir/notMy.cpp.s
+.PHONY : notMy.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -199,6 +239,7 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
 	@echo "... Lab3NoParallel"
+	@echo "... NotMy"
 	@echo "... Lab3"
 	@echo "... main.o"
 	@echo "... main.i"
@@ -206,6 +247,9 @@ help:
 	@echo "... mainNoParallel.o"
 	@echo "... mainNoParallel.i"
 	@echo "... mainNoParallel.s"
+	@echo "... notMy.o"
+	@echo "... notMy.i"
+	@echo "... notMy.s"
 .PHONY : help
 
 

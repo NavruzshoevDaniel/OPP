@@ -54,12 +54,14 @@ CMAKE_BINARY_DIR = /Users/daniel/CLionProjects/OPP/Lab3/cmake-build-debug
 
 # The main recursive "all" target.
 all: CMakeFiles/Lab3NoParallel.dir/all
+all: CMakeFiles/NotMy.dir/all
 all: CMakeFiles/Lab3.dir/all
 
 .PHONY : all
 
 # The main recursive "clean" target.
 clean: CMakeFiles/Lab3NoParallel.dir/clean
+clean: CMakeFiles/NotMy.dir/clean
 clean: CMakeFiles/Lab3.dir/clean
 
 .PHONY : clean
@@ -95,6 +97,33 @@ Lab3NoParallel: CMakeFiles/Lab3NoParallel.dir/rule
 CMakeFiles/Lab3NoParallel.dir/clean:
 	$(MAKE) -f CMakeFiles/Lab3NoParallel.dir/build.make CMakeFiles/Lab3NoParallel.dir/clean
 .PHONY : CMakeFiles/Lab3NoParallel.dir/clean
+
+#=============================================================================
+# Target rules for target CMakeFiles/NotMy.dir
+
+# All Build rule for target.
+CMakeFiles/NotMy.dir/all:
+	$(MAKE) -f CMakeFiles/NotMy.dir/build.make CMakeFiles/NotMy.dir/depend
+	$(MAKE) -f CMakeFiles/NotMy.dir/build.make CMakeFiles/NotMy.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Users/daniel/CLionProjects/OPP/Lab3/cmake-build-debug/CMakeFiles --progress-num=5,6 "Built target NotMy"
+.PHONY : CMakeFiles/NotMy.dir/all
+
+# Build rule for subdir invocation for target.
+CMakeFiles/NotMy.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/daniel/CLionProjects/OPP/Lab3/cmake-build-debug/CMakeFiles 2
+	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/NotMy.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/daniel/CLionProjects/OPP/Lab3/cmake-build-debug/CMakeFiles 0
+.PHONY : CMakeFiles/NotMy.dir/rule
+
+# Convenience name for target.
+NotMy: CMakeFiles/NotMy.dir/rule
+
+.PHONY : NotMy
+
+# clean rule for target.
+CMakeFiles/NotMy.dir/clean:
+	$(MAKE) -f CMakeFiles/NotMy.dir/build.make CMakeFiles/NotMy.dir/clean
+.PHONY : CMakeFiles/NotMy.dir/clean
 
 #=============================================================================
 # Target rules for target CMakeFiles/Lab3.dir

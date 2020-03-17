@@ -53,5 +53,6 @@ set(CMAKE_MAKEFILE_PRODUCTS
 # Dependency information for all targets:
 set(CMAKE_DEPEND_INFO_FILES
   "CMakeFiles/Lab3NoParallel.dir/DependInfo.cmake"
+  "CMakeFiles/NotMy.dir/DependInfo.cmake"
   "CMakeFiles/Lab3.dir/DependInfo.cmake"
   )
