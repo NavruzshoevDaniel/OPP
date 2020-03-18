@@ -10,7 +10,12 @@ void fillMatrices(double *a, double *b);
 void caluclate(double *a, double *b, double *c, int *dims, int rank, MPI_Comm comm2D);
 void createsTypes(MPI_Datatype *typeB, MPI_Datatype *typeC, int sizeRowStrip, int sizeColumnStrip);
 void createComms(MPI_Comm comm2D, MPI_Comm *columns, MPI_Comm *rows);
+void fillScatterBData(int *dims, int **sendCountsB, int **displsB);
+void fillGathervCData(int *dims, int **sendCountsC, int **displsC, int sizeRowStrip,int sizeComm2);
+void freeDataForZeroRank(int *sendCountsB,int *displsB,int *sendCountsC,int *displsC,MPI_Datatype *typeB,
+    MPI_Datatype *typeC);
 
+void multiplyPartMatrix(double *cPart, double *aPart, double *bPart, int sizeRowStrip, int sizeColStrip);
 int main(int argc, char *argv[]) {
   int size, rank;
   MPI_Init(&argc, &argv);//инициализация mpi
@@ -47,7 +52,6 @@ int main(int argc, char *argv[]) {
     free(A);
     free(B);
     free(C);
-
   }
   MPI_Finalize();
   return 0;
@@ -88,22 +92,8 @@ void caluclate(double *a, double *b, double *c, int *dims, int rank, MPI_Comm co
 
   if (rank == 0) {
     createsTypes(&typeB, &typeC, sizeRowStrip, sizeColumnStrip);
-    sendCountsB = (int *) calloc(dims[1], sizeof(int));
-    displsB = (int *) calloc(dims[1], sizeof(int));
-    for (int i = 0; i < dims[1]; ++i) {
-      displsB[i] = i;
-      sendCountsB[i] = 1;
-    }
-    sendCountsC = (int *) calloc(sizeComm2, sizeof(int));
-    displsC = (int *) calloc(sizeComm2, sizeof(int));
-    for (int i = 0; i < sizeComm2; ++i) {
-      sendCountsC[i] = 1;
-    }
-    for (int i = 0; i < dims[0]; ++i) {
-      for (int j = 0; j < dims[1]; ++j) {
-        displsC[i*dims[1]+j]=i*dims[1]*sizeRowStrip+j;
-      }
-    }
+    fillScatterBData(dims, &sendCountsB, &displsB);
+    fillGathervCData(dims, &sendCountsC, &displsC, sizeRowStrip,sizeComm2);
   }
 
   MPI_Comm comm1DColumns;
@@ -120,25 +110,38 @@ void caluclate(double *a, double *b, double *c, int *dims, int rank, MPI_Comm co
   MPI_Bcast(aPart, sizeRowStrip * N, MPI_DOUBLE, 0, comm1DRows);
   MPI_Bcast(bPart, sizeColumnStrip * N, MPI_DOUBLE, 0, comm1DColumns);
 
-  for (int i = 0; i < sizeRowStrip; ++i) {
-    for (int j = 0; j < sizeColumnStrip; ++j) {
-      for (int k = 0; k < N; ++k) {
-        cPart[i * sizeColumnStrip + j] += aPart[i * N + k] * bPart[k * sizeRowStrip + j];
-      }
-    }
-  }
+  multiplyPartMatrix(cPart,aPart,bPart,sizeRowStrip,sizeColumnStrip);
 
   MPI_Gatherv(cPart, sizeColumnStrip * sizeRowStrip, MPI_DOUBLE, c, sendCountsC, displsC, typeC, 0, comm2D);
+
   if (rank == 0) {
-    free(sendCountsB);
-    free(displsB);
-    free(sendCountsC);
-    free(displsC);
+    freeDataForZeroRank(sendCountsB, displsB, sendCountsC, displsC, &typeB, &typeC);
   }
   free(aPart);
   free(bPart);
   free(cPart);
 }
+
+void multiplyPartMatrix(double *cPart, double *aPart, double *bPart, int sizeRowStrip, int sizeColumnStrip) {
+  for (int i = 0; i < sizeRowStrip; ++i) {
+    for (int j = 0; j < sizeColumnStrip; ++j) {
+      for (int k = 0; k < N; ++k) {
+        cPart[i * sizeColumnStrip + j] += aPart[i * N + k] * bPart[k * sizeColumnStrip + j];
+      }
+    }
+  }
+}
+
+void freeDataForZeroRank(int *sendCountsB,int *displsB,int *sendCountsC,int *displsC,MPI_Datatype *typeB,
+    MPI_Datatype *typeC) {
+  free(sendCountsB);
+  free(displsB);
+  free(sendCountsC);
+  free(displsC);
+  MPI_Type_free(typeB);
+  MPI_Type_free(typeC);
+}
+
 void createComms(MPI_Comm comm2D, MPI_Comm *columns, MPI_Comm *rows) {
   int remainsRow[2]={0,1};
   int remainsColumns[2]={1,0};
@@ -157,4 +160,27 @@ void createsTypes(MPI_Datatype *typeB, MPI_Datatype *typeC, int sizeRowStrip, in
 
   MPI_Type_commit(typeB); //регистрируем новый производный тип
   MPI_Type_commit(typeC); //регистрируем новый производный тип
+}
+
+void fillScatterBData(int *dims, int **sendCountsB, int **displsB) {
+  *sendCountsB = (int *) calloc(dims[1], sizeof(int));
+  *displsB = (int *) calloc(dims[1], sizeof(int));
+
+  for (int i = 0; i < dims[1]; ++i) {
+    (*displsB)[i] = i;
+    (*sendCountsB)[i] = 1;
+  }
+}
+
+void fillGathervCData(int *dims, int **sendCountsC, int **displsC, int sizeRowStrip,int sizeComm2) {
+  *sendCountsC = (int *) calloc(sizeComm2, sizeof(int));
+  *displsC = (int *) calloc(sizeComm2, sizeof(int));
+  for (int i = 0; i < sizeComm2; ++i) {
+    (*sendCountsC)[i] = 1;
+  }
+  for (int i = 0; i < dims[0]; ++i) {
+    for (int j = 0; j < dims[1]; ++j) {
+      (*displsC)[i * dims[1] + j] = i * dims[1] * sizeRowStrip + j;
+    }
+  }
 }

@@ -3,9 +3,9 @@
 //
 #include <cstdio>
 #include <cstdlib>
-#define M 2
+#define M 10
 #define N 4
-#define K 5
+#define K 10
 
 
 void matrixMultiply(double *a, double *b, double *result);
@@ -40,13 +40,13 @@ void matrixMultiply(double *a, double *b, double *result) {
 void fillMatrices(double *a, double *b) {
   for (int i = 0; i < M; ++i) {
     for (int j = 0; j < N; ++j) {
-      a[i * N + j] = 1;
+      a[i * N + j] = i * N + j;
     }
   }
 
   for (int i = 0; i < N; ++i) {
     for (int j = 0; j < K; ++j) {
-      b[i * K + j] = 1;
+      b[i * K + j] = i * K + j;
     }
   }
 
