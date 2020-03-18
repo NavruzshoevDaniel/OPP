@@ -8,7 +8,7 @@ link_directories(/usr/local/opt/mpich/lib)
 
 
 add_executable(Lab3 main.cpp)
-add_executable(NotMy notMy.cpp)
+add_executable(NotMy smartParall.cpp)
 add_executable(Lab3NoParallel mainNoParallel.cpp)
 target_link_libraries(Lab3 mpi)
 target_link_libraries(NotMy mpi)
