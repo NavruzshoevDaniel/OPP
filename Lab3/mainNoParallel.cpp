@@ -3,9 +3,9 @@
 //
 #include <cstdio>
 #include <cstdlib>
-#define M 10
+#define M 4
 #define N 4
-#define K 10
+#define K 4
 
 
 void matrixMultiply(double *a, double *b, double *result);
@@ -20,7 +20,7 @@ int main(int argc, char *argv[]) {
   matrixMultiply(A, B, res);
   for (int i = 0; i < M; ++i) {
     for (int j = 0; j < K; ++j) {
-      printf("%f ",res[i*M+j]);
+      printf("%f ",res[i*K+j]);
     }
     printf("\n");
   }
