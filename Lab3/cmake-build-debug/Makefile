@@ -111,19 +111,6 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named Lab3NoParallel
-
-# Build rule for target.
-Lab3NoParallel: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 Lab3NoParallel
-.PHONY : Lab3NoParallel
-
-# fast build rule for target.
-Lab3NoParallel/fast:
-	$(MAKE) -f CMakeFiles/Lab3NoParallel.dir/build.make CMakeFiles/Lab3NoParallel.dir/build
-.PHONY : Lab3NoParallel/fast
-
-#=============================================================================
 # Target rules for targets named Smart
 
 # Build rule for target.
@@ -135,73 +122,6 @@ Smart: cmake_check_build_system
 Smart/fast:
 	$(MAKE) -f CMakeFiles/Smart.dir/build.make CMakeFiles/Smart.dir/build
 .PHONY : Smart/fast
-
-#=============================================================================
-# Target rules for targets named Lab3
-
-# Build rule for target.
-Lab3: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 Lab3
-.PHONY : Lab3
-
-# fast build rule for target.
-Lab3/fast:
-	$(MAKE) -f CMakeFiles/Lab3.dir/build.make CMakeFiles/Lab3.dir/build
-.PHONY : Lab3/fast
-
-main.o: main.cpp.o
-
-.PHONY : main.o
-
-# target to build an object file
-main.cpp.o:
-	$(MAKE) -f CMakeFiles/Lab3.dir/build.make CMakeFiles/Lab3.dir/main.cpp.o
-.PHONY : main.cpp.o
-
-main.i: main.cpp.i
-
-.PHONY : main.i
-
-# target to preprocess a source file
-main.cpp.i:
-	$(MAKE) -f CMakeFiles/Lab3.dir/build.make CMakeFiles/Lab3.dir/main.cpp.i
-.PHONY : main.cpp.i
-
-main.s: main.cpp.s
-
-.PHONY : main.s
-
-# target to generate assembly for a file
-main.cpp.s:
-	$(MAKE) -f CMakeFiles/Lab3.dir/build.make CMakeFiles/Lab3.dir/main.cpp.s
-.PHONY : main.cpp.s
-
-mainNoParallel.o: mainNoParallel.cpp.o
-
-.PHONY : mainNoParallel.o
-
-# target to build an object file
-mainNoParallel.cpp.o:
-	$(MAKE) -f CMakeFiles/Lab3NoParallel.dir/build.make CMakeFiles/Lab3NoParallel.dir/mainNoParallel.cpp.o
-.PHONY : mainNoParallel.cpp.o
-
-mainNoParallel.i: mainNoParallel.cpp.i
-
-.PHONY : mainNoParallel.i
-
-# target to preprocess a source file
-mainNoParallel.cpp.i:
-	$(MAKE) -f CMakeFiles/Lab3NoParallel.dir/build.make CMakeFiles/Lab3NoParallel.dir/mainNoParallel.cpp.i
-.PHONY : mainNoParallel.cpp.i
-
-mainNoParallel.s: mainNoParallel.cpp.s
-
-.PHONY : mainNoParallel.s
-
-# target to generate assembly for a file
-mainNoParallel.cpp.s:
-	$(MAKE) -f CMakeFiles/Lab3NoParallel.dir/build.make CMakeFiles/Lab3NoParallel.dir/mainNoParallel.cpp.s
-.PHONY : mainNoParallel.cpp.s
 
 smartParall.o: smartParall.cpp.o
 
@@ -238,15 +158,7 @@ help:
 	@echo "... depend"
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
-	@echo "... Lab3NoParallel"
 	@echo "... Smart"
-	@echo "... Lab3"
-	@echo "... main.o"
-	@echo "... main.i"
-	@echo "... main.s"
-	@echo "... mainNoParallel.o"
-	@echo "... mainNoParallel.i"
-	@echo "... mainNoParallel.s"
 	@echo "... smartParall.o"
 	@echo "... smartParall.i"
 	@echo "... smartParall.s"

@@ -1,0 +1,34 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/Users/daniel/CLionProjects/OPP/Lab3/smartParall.cpp
+cstdlib
+-
+mpi.h
+-
+
+/usr/local/opt/mpich/include/mpi.h
+stddef.h
+-
+cstdint
+-
+stdint.h
+-
+mpio.h
+/usr/local/opt/mpich/include/mpio.h
+mpicxx.h
+/usr/local/opt/mpich/include/mpicxx.h
+
+/usr/local/opt/mpich/include/mpicxx.h
+stdio.h
+-
+
+/usr/local/opt/mpich/include/mpio.h
+mpi.h
+/usr/local/opt/mpich/include/mpi.h
+

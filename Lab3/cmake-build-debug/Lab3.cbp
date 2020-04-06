@@ -37,50 +37,6 @@
 					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/daniel/CLionProjects/OPP/Lab3/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
-			<Target title="Lab3NoParallel">
-				<Option output="/Users/daniel/CLionProjects/OPP/Lab3/cmake-build-debug/Lab3NoParallel" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/Users/daniel/CLionProjects/OPP/Lab3/cmake-build-debug"/>
-				<Option object_output="./"/>
-				<Option type="1"/>
-				<Option compiler="gcc"/>
-				<Compiler>
-					<Add directory="/usr/local/opt/mpich/include"/>
-					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1"/>
-					<Add directory="/usr/local/include"/>
-					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/11.0.0/include"/>
-					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include"/>
-					<Add directory="/System/Library/Frameworks"/>
-					<Add directory="/Library/Frameworks"/>
-				</Compiler>
-				<MakeCommands>
-					<Build command="/usr/bin/make -j4 -f &quot;/Users/daniel/CLionProjects/OPP/Lab3/cmake-build-debug/Makefile&quot;  VERBOSE=1 Lab3NoParallel"/>
-					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/daniel/CLionProjects/OPP/Lab3/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j4 -f &quot;/Users/daniel/CLionProjects/OPP/Lab3/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/daniel/CLionProjects/OPP/Lab3/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-				</MakeCommands>
-			</Target>
-			<Target title="Lab3NoParallel/fast">
-				<Option output="/Users/daniel/CLionProjects/OPP/Lab3/cmake-build-debug/Lab3NoParallel" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/Users/daniel/CLionProjects/OPP/Lab3/cmake-build-debug"/>
-				<Option object_output="./"/>
-				<Option type="1"/>
-				<Option compiler="gcc"/>
-				<Compiler>
-					<Add directory="/usr/local/opt/mpich/include"/>
-					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1"/>
-					<Add directory="/usr/local/include"/>
-					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/11.0.0/include"/>
-					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include"/>
-					<Add directory="/System/Library/Frameworks"/>
-					<Add directory="/Library/Frameworks"/>
-				</Compiler>
-				<MakeCommands>
-					<Build command="/usr/bin/make -j4 -f &quot;/Users/daniel/CLionProjects/OPP/Lab3/cmake-build-debug/Makefile&quot;  VERBOSE=1 Lab3NoParallel/fast"/>
-					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/daniel/CLionProjects/OPP/Lab3/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j4 -f &quot;/Users/daniel/CLionProjects/OPP/Lab3/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/daniel/CLionProjects/OPP/Lab3/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-				</MakeCommands>
-			</Target>
 			<Target title="Smart">
 				<Option output="/Users/daniel/CLionProjects/OPP/Lab3/cmake-build-debug/Smart" prefix_auto="0" extension_auto="0"/>
 				<Option working_dir="/Users/daniel/CLionProjects/OPP/Lab3/cmake-build-debug"/>
@@ -125,57 +81,7 @@
 					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/daniel/CLionProjects/OPP/Lab3/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
-			<Target title="Lab3">
-				<Option output="/Users/daniel/CLionProjects/OPP/Lab3/cmake-build-debug/Lab3" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/Users/daniel/CLionProjects/OPP/Lab3/cmake-build-debug"/>
-				<Option object_output="./"/>
-				<Option type="1"/>
-				<Option compiler="gcc"/>
-				<Compiler>
-					<Add directory="/usr/local/opt/mpich/include"/>
-					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1"/>
-					<Add directory="/usr/local/include"/>
-					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/11.0.0/include"/>
-					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include"/>
-					<Add directory="/System/Library/Frameworks"/>
-					<Add directory="/Library/Frameworks"/>
-				</Compiler>
-				<MakeCommands>
-					<Build command="/usr/bin/make -j4 -f &quot;/Users/daniel/CLionProjects/OPP/Lab3/cmake-build-debug/Makefile&quot;  VERBOSE=1 Lab3"/>
-					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/daniel/CLionProjects/OPP/Lab3/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j4 -f &quot;/Users/daniel/CLionProjects/OPP/Lab3/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/daniel/CLionProjects/OPP/Lab3/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-				</MakeCommands>
-			</Target>
-			<Target title="Lab3/fast">
-				<Option output="/Users/daniel/CLionProjects/OPP/Lab3/cmake-build-debug/Lab3" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/Users/daniel/CLionProjects/OPP/Lab3/cmake-build-debug"/>
-				<Option object_output="./"/>
-				<Option type="1"/>
-				<Option compiler="gcc"/>
-				<Compiler>
-					<Add directory="/usr/local/opt/mpich/include"/>
-					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1"/>
-					<Add directory="/usr/local/include"/>
-					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/11.0.0/include"/>
-					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include"/>
-					<Add directory="/System/Library/Frameworks"/>
-					<Add directory="/Library/Frameworks"/>
-				</Compiler>
-				<MakeCommands>
-					<Build command="/usr/bin/make -j4 -f &quot;/Users/daniel/CLionProjects/OPP/Lab3/cmake-build-debug/Makefile&quot;  VERBOSE=1 Lab3/fast"/>
-					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/daniel/CLionProjects/OPP/Lab3/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j4 -f &quot;/Users/daniel/CLionProjects/OPP/Lab3/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/daniel/CLionProjects/OPP/Lab3/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-				</MakeCommands>
-			</Target>
 		</Build>
-		<Unit filename="/Users/daniel/CLionProjects/OPP/Lab3/main.cpp">
-			<Option target="Lab3"/>
-		</Unit>
-		<Unit filename="/Users/daniel/CLionProjects/OPP/Lab3/mainNoParallel.cpp">
-			<Option target="Lab3NoParallel"/>
-		</Unit>
 		<Unit filename="/Users/daniel/CLionProjects/OPP/Lab3/smartParall.cpp">
 			<Option target="Smart"/>
 		</Unit>
