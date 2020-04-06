@@ -54,7 +54,6 @@ CMAKE_BINARY_DIR = /Users/daniel/CLionProjects/OPP/Lab3/cmake-build-debug
 
 # The main recursive "all" target.
 all: CMakeFiles/Lab3NoParallel.dir/all
-all: CMakeFiles/newLab.dir/all
 all: CMakeFiles/Smart.dir/all
 all: CMakeFiles/Lab3.dir/all
 
@@ -62,7 +61,6 @@ all: CMakeFiles/Lab3.dir/all
 
 # The main recursive "clean" target.
 clean: CMakeFiles/Lab3NoParallel.dir/clean
-clean: CMakeFiles/newLab.dir/clean
 clean: CMakeFiles/Smart.dir/clean
 clean: CMakeFiles/Lab3.dir/clean
 
@@ -99,33 +97,6 @@ Lab3NoParallel: CMakeFiles/Lab3NoParallel.dir/rule
 CMakeFiles/Lab3NoParallel.dir/clean:
 	$(MAKE) -f CMakeFiles/Lab3NoParallel.dir/build.make CMakeFiles/Lab3NoParallel.dir/clean
 .PHONY : CMakeFiles/Lab3NoParallel.dir/clean
-
-#=============================================================================
-# Target rules for target CMakeFiles/newLab.dir
-
-# All Build rule for target.
-CMakeFiles/newLab.dir/all:
-	$(MAKE) -f CMakeFiles/newLab.dir/build.make CMakeFiles/newLab.dir/depend
-	$(MAKE) -f CMakeFiles/newLab.dir/build.make CMakeFiles/newLab.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Users/daniel/CLionProjects/OPP/Lab3/cmake-build-debug/CMakeFiles --progress-num=7,8 "Built target newLab"
-.PHONY : CMakeFiles/newLab.dir/all
-
-# Build rule for subdir invocation for target.
-CMakeFiles/newLab.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/daniel/CLionProjects/OPP/Lab3/cmake-build-debug/CMakeFiles 2
-	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/newLab.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/daniel/CLionProjects/OPP/Lab3/cmake-build-debug/CMakeFiles 0
-.PHONY : CMakeFiles/newLab.dir/rule
-
-# Convenience name for target.
-newLab: CMakeFiles/newLab.dir/rule
-
-.PHONY : newLab
-
-# clean rule for target.
-CMakeFiles/newLab.dir/clean:
-	$(MAKE) -f CMakeFiles/newLab.dir/build.make CMakeFiles/newLab.dir/clean
-.PHONY : CMakeFiles/newLab.dir/clean
 
 #=============================================================================
 # Target rules for target CMakeFiles/Smart.dir

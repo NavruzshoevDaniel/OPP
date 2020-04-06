@@ -124,19 +124,6 @@ Lab3NoParallel/fast:
 .PHONY : Lab3NoParallel/fast
 
 #=============================================================================
-# Target rules for targets named newLab
-
-# Build rule for target.
-newLab: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 newLab
-.PHONY : newLab
-
-# fast build rule for target.
-newLab/fast:
-	$(MAKE) -f CMakeFiles/newLab.dir/build.make CMakeFiles/newLab.dir/build
-.PHONY : newLab/fast
-
-#=============================================================================
 # Target rules for targets named Smart
 
 # Build rule for target.
@@ -216,33 +203,6 @@ mainNoParallel.cpp.s:
 	$(MAKE) -f CMakeFiles/Lab3NoParallel.dir/build.make CMakeFiles/Lab3NoParallel.dir/mainNoParallel.cpp.s
 .PHONY : mainNoParallel.cpp.s
 
-newLab.o: newLab.cpp.o
-
-.PHONY : newLab.o
-
-# target to build an object file
-newLab.cpp.o:
-	$(MAKE) -f CMakeFiles/newLab.dir/build.make CMakeFiles/newLab.dir/newLab.cpp.o
-.PHONY : newLab.cpp.o
-
-newLab.i: newLab.cpp.i
-
-.PHONY : newLab.i
-
-# target to preprocess a source file
-newLab.cpp.i:
-	$(MAKE) -f CMakeFiles/newLab.dir/build.make CMakeFiles/newLab.dir/newLab.cpp.i
-.PHONY : newLab.cpp.i
-
-newLab.s: newLab.cpp.s
-
-.PHONY : newLab.s
-
-# target to generate assembly for a file
-newLab.cpp.s:
-	$(MAKE) -f CMakeFiles/newLab.dir/build.make CMakeFiles/newLab.dir/newLab.cpp.s
-.PHONY : newLab.cpp.s
-
 smartParall.o: smartParall.cpp.o
 
 .PHONY : smartParall.o
@@ -277,9 +237,8 @@ help:
 	@echo "... clean"
 	@echo "... depend"
 	@echo "... rebuild_cache"
-	@echo "... Lab3NoParallel"
-	@echo "... newLab"
 	@echo "... edit_cache"
+	@echo "... Lab3NoParallel"
 	@echo "... Smart"
 	@echo "... Lab3"
 	@echo "... main.o"
@@ -288,9 +247,6 @@ help:
 	@echo "... mainNoParallel.o"
 	@echo "... mainNoParallel.i"
 	@echo "... mainNoParallel.s"
-	@echo "... newLab.o"
-	@echo "... newLab.i"
-	@echo "... newLab.s"
 	@echo "... smartParall.o"
 	@echo "... smartParall.i"
 	@echo "... smartParall.s"
