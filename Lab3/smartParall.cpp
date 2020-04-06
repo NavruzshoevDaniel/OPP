@@ -1,9 +1,9 @@
 #include <cstdlib>
 #include <mpi.h>
 
-#define M 5
-#define N 4
-#define K 4
+#define M 4
+#define N 5
+#define K 5
 #define MAX_DIMS 2
 // |------x
 // |
@@ -29,6 +29,7 @@ int main(int argc, char *argv[]) {
   int reorder = 0;
   MPI_Comm comm2D;
   MPI_Dims_create(size, MAX_DIMS, dims);
+  printf("%d",dims[1]);
   MPI_Cart_create(MPI_COMM_WORLD, MAX_DIMS, dims, periods, reorder, &comm2D);
 
   double *A;
@@ -43,14 +44,14 @@ int main(int argc, char *argv[]) {
   }
 
   caluclate(A, B, C, dims, rank, comm2D);
-  if (rank == 0) {
+  /*if (rank == 0) {
     for (int i = 0; i < M; ++i) {
       for (int j = 0; j < K; ++j) {
         printf("%f ", C[i * K + j]);
       }
       printf("\n");
     }
-  }
+  }*/
   if (rank == 0) {
     free(A);
     free(B);
@@ -103,7 +104,7 @@ void caluclate(double *a, double *b, double *c, int *dims, int rank, MPI_Comm co
   double *bPart = (double *) calloc(sizeColsForEachProc * N, sizeof(double));
   double *cPart = (double *) calloc(sizeColsForEachProc * sizeRowsForEachProc, sizeof(double));
 
-  createsTypes(&typeB, &typeC, sizeRowStrip, sizeColumnStrip);
+  createsTypes(&typeB, &typeC, sizeRowsForEachProc, sizeColsForEachProc);
 
   fillScatterAData(dims, &sendCountsA, &displsA, sizeRowStripMod);
   fillScatterBData(dims, &sendCountsB, &displsB);
@@ -116,23 +117,26 @@ void caluclate(double *a, double *b, double *c, int *dims, int rank, MPI_Comm co
   if (coords[1] == 0) {
     MPI_Scatterv(a, sendCountsA, displsA, MPI_DOUBLE, aPart,
                  sizeRowsForEachProc * N, MPI_DOUBLE, 0, comm1DColumns);
-    printf("rank=%d recv=%d\n", rank, sizeRowsForEachProc * N);
+    /*printf("rank=%d recv=%d\n", rank, sizeRowsForEachProc * N);
     for (int i = 0; i < sizeRowsForEachProc * N; ++i) {
       printf("%f ", aPart[i]);
     }
-    printf("\n");
+    printf("\n");*/
   }
 
   if (coords[0] == 0) {
+    for (int j = 0; j < dims[1]; ++j) {
+      printf("send=%d displs=%d\n",sendCountsB[j],displsB[j]);
 
-    // MPI_Scatterv(b, sendCountsB, displsB, typeB, bPart, sizeColsForEachProc * N, MPI_DOUBLE, 0, comm1DRows);
+    } printf("\n");
+    MPI_Scatterv(b, sendCountsB, displsB, typeB, bPart, sizeColsForEachProc * N, MPI_DOUBLE, 0, comm1DRows);
 
-    /* printf("rank=%d ", rank);
+     printf("rank=%d ", rank);
 
      for (int i = 0; i < sizeColsForEachProc*N; ++i) {
        printf("%f ", bPart[i]);
      }
-     printf("\n");*/
+     printf("\n");
   }
 
   //MPI_Bcast(aPart, sizeRowsForEachProc * N, MPI_DOUBLE, 0, comm1DRows);
@@ -234,8 +238,8 @@ void fillDataForEachProc(int *dims, int *coords, int *sizeRows, int *sizeCols, i
   } else {
     *sizeCols = K / dims[1];
   }
-  /*printf("coords[0]=%d coords[1]=%d \n", coords[0], coords[1]);
-  printf("sizeRows=%d sizeCols=%d \n", *sizeRows, *sizeCols);*/
+  printf("coords[0]=%d coords[1]=%d \n", coords[0], coords[1]);
+  printf("sizeRows=%d sizeCols=%d \n", *sizeRows, *sizeCols);
 }
 
 void fillScatterAData(int *dims, int **sendCountsA, int **displsA, int sizeRowStripMod) {
