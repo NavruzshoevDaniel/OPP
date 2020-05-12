@@ -66,6 +66,9 @@ int main(int argc, char **argv) {
   MPI_Status status;
   double start=MPI_Wtime();
   double startIter=0;
+  double iterTime=0;
+  double minIterTime=0;
+  double maxIterTime=0;
   while (numList != NUM_LISTS) {
 
     initTasks(tasks, numTasksForEachProc, rank, size, numList);
@@ -104,16 +107,29 @@ int main(int argc, char **argv) {
       }
 
     }
+    iterTime=MPI_Wtime()-startIter;
     shift(rank);
-    printf("END PROC #%d ITERATION (TIME=%f)\n", rank,MPI_Wtime()-startIter);
+    printf("END PROC #%d ITERATION (TIME=%f)\n", rank,iterTime);
+
+    MPI_Allreduce(&iterTime,&minIterTime,1,MPI_DOUBLE,MPI_MIN,MPI_COMM_WORLD);
+    MPI_Allreduce(&iterTime,&maxIterTime,1,MPI_DOUBLE,MPI_MAX,MPI_COMM_WORLD);
+
     MPI_Barrier(MPI_COMM_WORLD);
     int global = 0;
+
+    if(rank==0){
+      printf("!!!DISBALANCE:%f!!!\n",maxIterTime-minIterTime);
+      printf("!!!!PROPORTION OF DISBALANCE:%.3f%!!!!\n",(maxIterTime-minIterTime)/maxIterTime*100);
+    }
+
     MPI_Allreduce(&globalTasksDone, &global, 1, MPI_INT, MPI_SUM, MPI_COMM_WORLD);
     shift(rank);
     printf("GLOBAL TASKS=%d\n", global);
     extraExec=1;
     numList++;
+    MPI_Barrier(MPI_COMM_WORLD);
   }
+
   MPI_Send(&STOP_RECEIVING, 1, MPI_INT, rank, 0, MPI_COMM_WORLD);
 
   printf("TIME:%f\n",MPI_Wtime()-start);
@@ -128,7 +144,7 @@ int main(int argc, char **argv) {
 
 void initTasks(int *tasks, int num, int rank, int size, int iterCounter) {
   for (int i = 0; i < num; ++i) {
-    tasks[i] = abs(rank - (iterCounter % size)) * WAITING * 100;
+    tasks[i] = abs(100-i%100)*abs(rank - (iterCounter % size)) * WAITING;
     printf("task=%d rank=%d ", tasks[i], rank);
   }
   printf("\n");
@@ -146,7 +162,7 @@ void *recvTasks(void *me) {
     shift(rank);
     printf("PROC #%d WAITING RECV\n", rank);
     MPI_Recv(&recvRank, 1, MPI_INT, MPI_ANY_SOURCE, 0, MPI_COMM_WORLD, &status);
-    
+
     shift(rank);
     printf("PROC %d recvRank=%d\n", rank, recvRank);
 
@@ -161,13 +177,13 @@ void *recvTasks(void *me) {
 
       sendTasks = leftTasks / 2;
       leftTasks -= sendTasks;
-      curTask += sendTasks;
       shift(rank);
       printf("AFTER rank=%d lefttask=%d curTask=%d\n", rank, leftTasks, curTask);
 
       MPI_Send(&sendTasks, 1, MPI_INT, status.MPI_SOURCE, 1, MPI_COMM_WORLD);
 
-      MPI_Send(&tasks[curTask], sendTasks, MPI_INT, status.MPI_SOURCE, 1, MPI_COMM_WORLD);
+      MPI_Send(&tasks[curTask+1], sendTasks, MPI_INT, status.MPI_SOURCE, 1, MPI_COMM_WORLD);
+      curTask += sendTasks;
       shift(rank);
       printf("SEND %d tasks from #%d to #%d\n", sendTasks, rank, status.MPI_SOURCE);
     } else {pthread_mutex_unlock(&mutex);
@@ -191,20 +207,21 @@ void exec(int *tasks, int numTasks, int rank) {
   pthread_mutex_lock(&mutex);
   leftTasks = numTasks;
   curTask = 0;
+  int localCurTask=0;
 
   while (leftTasks != 0) {
     leftTasks--;
     localTasks++;
+    localCurTask=curTask;
     pthread_mutex_unlock(&mutex);
 
     globalTasksDone++;
-    for (int j = 0; j < tasks[curTask]; ++j) {
+    for (int j = 0; j < tasks[localCurTask]; ++j) {
       globalTasksDone *= (int) (sqrt((int) sqrt((int) sqrt(256))) / 2);
     }
-
-    pthread_mutex_lock(&mutex);
     shift(rank);
-    printf("TASK #%d PROC #%d DONE!(GLOBAL=%d)\n", curTask, rank, globalTasksDone);
+    printf("TASK #%d PROC #%d DONE!(GLOBAL=%d)\n", localCurTask, rank, globalTasksDone);
+    pthread_mutex_lock(&mutex);
     curTask++;
   }
 

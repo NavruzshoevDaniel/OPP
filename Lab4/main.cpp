@@ -3,9 +3,9 @@
 #include <mpi.h>
 
 /*Количество ячеек вдоль координат x, y, z*/
-#define Nx 35
-#define Ny 35
-#define Nz 35
+#define Nx 70
+#define Ny 70
+#define Nz 70
 #define a 1e5
 
 int I;
@@ -237,9 +237,12 @@ void recData() {
 
 void findMaxDiff() {
   double max = 0.0;
-  for (int i = 1; i < linesPerProc[curProc] - 2; i++) {
-    for (int j = 1; j < Ny; j++) {
-      for (int k = 1; k < Nz; k++) {
+  for (int i = 0; i < linesPerProc[curProc]; i++) {
+    for (int j = 0; j < Ny; j++) {
+      for (int k = 0; k < Nz; k++) {
+        if(i==linesPerProc[curProc]-2){
+          printf("[%d][%d][%d] =%.18f    =%.18f\n",i,j,k,F[next][i * J * K + j * K + k],phi((i + offsets[curProc]) * hx, j * hy, k * hz));
+        }
         if ((F1 = fabs(F[next][i * J * K + j * K + k] - phi((i + offsets[curProc]) * hx, j * hy, k * hz))) > max) {
           max = F1;
         }
